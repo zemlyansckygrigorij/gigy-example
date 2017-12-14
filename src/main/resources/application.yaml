@@ -1,0 +1,22 @@
+server:
+  port: 8090
+  contextPath: /gigy
+  error:
+    whitelabel:
+      enabled: true
+spring:
+    jpa:
+        database: MYSQL
+         # hibernate:
+        #   ddl-auto: create
+
+    datasource:
+        url: jdbc:mysql://localhost:3306/gigy
+        username: root
+        password: uhbujhbq
+        name: boot
+        driver-class-name: com.mysql.jdbc.Driver
+    mvc:
+      throw-exception-if-no-handler-found: true
+
+
