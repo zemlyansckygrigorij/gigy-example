@@ -20,53 +20,53 @@ import com.gigy.repository.PersonRepository;
 @RequestMapping("/people")
 public class PersonController {
 
-	@Autowired
-	private PersonRepository personRepo;
+    @Autowired
+    private PersonRepository personRepo;
 
-	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<Collection<Person>> getPeople() {
-		return new ResponseEntity<>(personRepo.findAll(), HttpStatus.OK);
-	}
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<Collection<Person>> getPeople() {
+        return new ResponseEntity<>(personRepo.findAll(), HttpStatus.OK);
+    }
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Person> getPerson(@PathVariable long id) {
-		Person person = personRepo.findOne(id);
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Person> getPerson(@PathVariable long id) {
+        Person person = personRepo.findOne(id);
 
-		if (person != null) {
-			return new ResponseEntity<>(personRepo.findOne(id), HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(/*null,*/ HttpStatus.NOT_FOUND);
+        if (person != null) {
+            return new ResponseEntity<>(personRepo.findOne(id), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(/*null,*/ HttpStatus.NOT_FOUND);
 
-		}
-	}
+        }
+    }
 
-	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<?> addPerson(@RequestBody Person person) {
-		return new ResponseEntity<>(personRepo.save(person), HttpStatus.CREATED);
-	}
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<?> addPerson(@RequestBody Person person) {
+        return new ResponseEntity<>(personRepo.save(person), HttpStatus.CREATED);
+    }
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<Void> deletePerson(@PathVariable long id, Principal principal) {
-		Person currentPerson = personRepo.findByUsername(principal.getName());
-		
-		if (currentPerson.getId() == id) {
-			personRepo.delete(id);
-			return new ResponseEntity<Void>(HttpStatus.OK);
-		} else {
-			return new ResponseEntity<Void>(HttpStatus.UNAUTHORIZED);
-		}
-	}
-	
-	@RequestMapping(value = "/{id}/parties", method = RequestMethod.GET)
-	public ResponseEntity<Collection<Party>> getPersonParties(@PathVariable long id) {
-		Person person = personRepo.findOne(id);
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Void> deletePerson(@PathVariable long id, Principal principal) {
+        Person currentPerson = personRepo.findByUsername(principal.getName());
 
-		if (person != null) {
-			return new ResponseEntity<>(person.getParties(), HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(/*null,*/ HttpStatus.NOT_FOUND);
-		}
-	}
+        if (currentPerson.getId() == id) {
+            personRepo.delete(id);
+            return new ResponseEntity<Void>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<Void>(HttpStatus.UNAUTHORIZED);
+        }
+    }
+
+    @RequestMapping(value = "/{id}/parties", method = RequestMethod.GET)
+    public ResponseEntity<Collection<Party>> getPersonParties(@PathVariable long id) {
+        Person person = personRepo.findOne(id);
+
+        if (person != null) {
+            return new ResponseEntity<>(person.getParties(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(/*null,*/ HttpStatus.NOT_FOUND);
+        }
+    }
 
 
 

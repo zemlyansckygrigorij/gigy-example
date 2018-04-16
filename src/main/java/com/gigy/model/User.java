@@ -17,27 +17,27 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
-	
+
 	static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "user_id", nullable = false, updatable = false)
 	private Long id;
-	
+
 	@Column(name = "username", nullable = false, unique = true)
 	private String username;
-	
+
 	@Column(name = "password", nullable = false)
 	private String password;
-	
+
 	@Column(name = "enabled", nullable = false)
 	private int enabled;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		
+
 		return authorities;
 	}
 

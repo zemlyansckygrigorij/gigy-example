@@ -7,8 +7,8 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.Collection;
 
 public interface SkillRepository  extends CrudRepository<Skill, Long>{
-    Collection<Skill> findAll();
 
-   // Skill findBySkillName(String skillName);
+    Collection<Skill> findAll();
+    Skill findByName(String skillName);
 
 }

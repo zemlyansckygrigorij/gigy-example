@@ -4,7 +4,10 @@ import java.security.Principal;
 import java.util.Collection;
 
 import com.gigy.model.Level;
+import com.gigy.model.Party;
+import com.gigy.model.Person;
 import com.gigy.model.Skill;
+import com.gigy.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
@@ -12,11 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.web.bind.annotation.*;
-
-import com.gigy.model.Party;
-import com.gigy.model.Person;
-import com.gigy.repository.PersonRepository;
-
 
 
 @Configuration
@@ -39,7 +37,7 @@ public class UserContoller{
         if (person != null) {
             return new ResponseEntity<>(person, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(/*null,*/ HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>( HttpStatus.NOT_FOUND);
 
         }
     }
@@ -79,11 +77,40 @@ public class UserContoller{
 
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> addSkill(@RequestBody Skill skill,Principal principal) {
+    public ResponseEntity<?> addSkill(@RequestBody Skill skill, Principal principal) {
 
         Person person = personRepo.findByUsername(principal.getName());
         person.getSkills().add(skill);
         return new ResponseEntity<>(person, HttpStatus.OK);
+    }
+
+
+    @RequestMapping(value = "/{skill}/{level}",method = RequestMethod.POST)
+    public ResponseEntity<?> addSkill(@PathVariable String skill ,String level,Principal principal) {
+        Person person = personRepo.findByUsername(principal.getName());
+
+        Level level_;
+
+        switch(level){
+            case("GOOD"):{
+                level_ = Level.GOOD;
+            }
+            case("AWESOME"):{
+                level_ = Level.AWESOME;
+            }
+            case("GODLIKE"):{
+                level_ = Level.GODLIKE;
+            }
+            default:{
+                level_ = Level.GOOD;
+            }
+        }
+        Skill skill_ = new Skill();
+        skill_.setName(skill);
+        skill_.setLevel(level_);
+
+        person.getSkills().add(skill_);
+        return new ResponseEntity<>(person, HttpStatus.CREATED);
     }
 
 }
@@ -132,35 +159,4 @@ public class UserContoller{
 
     29d290f2-b1d6-417a-a243-46a8bef0ca1b
 */
-/*
-*
- * @RequestMapping(value = "/{skill}/{level}",method = RequestMethod.POST)
-    public ResponseEntity<?> addSkill(@PathVariable String skill ,String level,Principal principal) {
-        Person person = personRepo.findByUsername(principal.getName());
 
-        Level level_;
-
-        switch(level){
-            case("GOOD"):{
-                level_ = Level.GOOD;
-            }
-            case("AWESOME"):{
-                level_ = Level.AWESOME;
-            }
-            case("GODLIKE"):{
-                level_ = Level.GODLIKE;
-            }
-            default:{
-                level_ = Level.GOOD;
-            }
-        }
-        Skill skill_ = new Skill();
-        skill_.setName(skill);
-        skill_.setLevel(level_);
-
-        person.getSkills().add(skill_);
-        return new ResponseEntity<>(person, HttpStatus.CREATED);
-    }
-*
-*
-* */

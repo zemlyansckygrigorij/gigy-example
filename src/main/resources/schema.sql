@@ -34,4 +34,93 @@ CREATE TABLE people_parties (
   person_id BIGINT NOT NULL REFERENCES people (person_id),
   party_id BIGINT NOT NULL REFERENCES parties (party_id),
   PRIMARY KEY (person_id, party_id),
-);*/
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+DROP TABLE IF EXISTS `gigy`.`skills`;
+CREATE TABLE `gigy`.`skills` (
+  `skill_id` INT NOT NULL AUTO_INCREMENT COMMENT '',
+  `person_id` INT NULL COMMENT '',
+  `name` VARCHAR(16) NULL COMMENT '',
+  `level` VARCHAR(16) NULL COMMENT '',
+  PRIMARY KEY (`skill_id`)  COMMENT '');
+
+
+
+
+DROP TABLE IF EXISTS `gigy`.`skills1`;
+CREATE TABLE `gigy`.`skills1` (
+  `skill_id` INT NOT NULL AUTO_INCREMENT COMMENT '',
+  `person_id` INT NULL COMMENT '',
+  `name` VARCHAR(16) NULL COMMENT '',
+  `level` VARCHAR(16) NULL COMMENT '',
+  PRIMARY KEY (`skill_id`)  COMMENT '');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/

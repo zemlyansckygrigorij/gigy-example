@@ -1,3 +1,8 @@
+в данном  проекте использовались библиотеки mysql,oauth2, lombok, dozer,
+
+**доделать тестирование**
+
+
 ## About
 
 This is an example project that illustrates creating a RESTful API in Spring Boot.
@@ -6,7 +11,7 @@ This is an example project that illustrates creating a RESTful API in Spring Boo
 
 ```
 mvn spring-boot:run
-```
+```heroes@localhost
 
 ## Get token
 

@@ -27,7 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers("/login");
 	}
-	
+
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		http.antMatcher("/gigy/**")

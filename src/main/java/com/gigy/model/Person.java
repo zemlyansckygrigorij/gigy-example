@@ -21,73 +21,73 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @Table(name = "people")
 public class Person {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "person_id")
-	private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "person_id")
+    private long id;
 
-	private String name;
-	
-	private String username;
+    private String name;
 
-	private int age;
+    private String username;
 
-	@OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
-	private Set<Skill> skills = new HashSet<Skill>();
+    private int age;
 
-	@ManyToMany(cascade = CascadeType.MERGE)
-	@JsonBackReference
-	@JoinTable(name = "people_parties",
-		joinColumns = @JoinColumn(name = "person_id", referencedColumnName = "person_id"),
-		inverseJoinColumns = @JoinColumn(name = "party_id", referencedColumnName = "party_id"))
-	private Set<Party> parties = new HashSet<Party>();
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+    private Set<Skill> skills = new HashSet<Skill>();
 
-	public long getId() {
-		return id;
-	}
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JsonBackReference
+    @JoinTable(name = "people_parties",
+            joinColumns = @JoinColumn(name = "person_id", referencedColumnName = "person_id"),
+            inverseJoinColumns = @JoinColumn(name = "party_id", referencedColumnName = "party_id"))
+    private Set<Party> parties = new HashSet<Party>();
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getUsername() {
-		return username;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public int getAge() {
-		return age;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public void setAge(int age) {
-		this.age = age;
-	}
+    public int getAge() {
+        return age;
+    }
 
-	public Set<Skill> getSkills() {
-		return skills;
-	}
+    public void setAge(int age) {
+        this.age = age;
+    }
 
-	public void setSkills(Set<Skill> skills) {
-		this.skills = skills;
-	}
+    public Set<Skill> getSkills() {
+        return skills;
+    }
 
-	public Set<Party> getParties() {
-		return parties;
-	}
+    public void setSkills(Set<Skill> skills) {
+        this.skills = skills;
+    }
 
-	public void setParties(Set<Party> parties) {
-		this.parties = parties;
-	}
+    public Set<Party> getParties() {
+        return parties;
+    }
+
+    public void setParties(Set<Party> parties) {
+        this.parties = parties;
+    }
 
 }

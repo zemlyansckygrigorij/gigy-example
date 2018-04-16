@@ -1,6 +1,6 @@
 server:
   port: 8090
-  contextPath: /gigy
+  contextPath: /heroes
   error:
     whitelabel:
       enabled: true
@@ -11,7 +11,7 @@ spring:
         #   ddl-auto: create
 
     datasource:
-        url: jdbc:mysql://localhost:3306/gigy
+        url: jdbc:mysql://localhost:3306/heroes
         username: root
         password: uhbujhbq
         name: boot

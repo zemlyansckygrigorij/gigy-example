@@ -1,12 +1,11 @@
 package com.gigy.repository;
 
+import com.gigy.model.Person;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import com.gigy.model.Person;
 
 import static org.junit.Assert.assertEquals;
 
@@ -23,9 +22,9 @@ public class PersonRepositoryTest {
         Person person = new Person();
         person.setName("John");
         person.setAge(25);
-        
+
         Person result = repository.save(person);
-        
+
         assertEquals(result.getName(), "John");
         assertEquals(result.getAge(), 25);
     }
